@@ -1,0 +1,25 @@
+.row {
+  max-width: $grid-width;
+  background-color: red;
+  margin: 0 auto;
+
+  &:not(:last-child) {
+    //every row except the last child
+    margin-bottom: $gutter-vertical;
+  }
+
+  @include clearfix;
+
+  [class^="col-"] {
+    //selector that select any class that starts with col- does this things
+    background-color: green;
+    float: left;
+    &:not(:last-child) {
+      //every row except the last child
+      margin-right: $gutter-horizontal;
+    }
+  }
+  .col-1-of-2 {
+    width: calc((100% - #{$gutter-horizontal}) / 2);
+  }
+}
