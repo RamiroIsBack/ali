@@ -1,0 +1,71 @@
+.card {
+  //functionality
+  perspective: 150rem;
+  -moz-perspective: 150rem; //we need this perspective on the parent (moz is for mozilla)
+  position: relative;
+  height: 50rem;
+
+  &__side {
+    height: 50rem;
+    transition: all 0.8s ease;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 3px;
+    overflow: hidden; //so the image is not messing with the border-radius
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+
+    &--front {
+      background-color: $color-white;
+    }
+    &--back {
+      transform: rotateY(180deg);
+      &-1 {
+        background-image: linear-gradient(
+          to right bottom,
+          $color-secundary-light,
+          $color-secundary-dark
+        );
+      }
+    }
+  }
+
+  &:hover &__side--front {
+    //we hover on the parent but want to rotate card__side
+    transform: rotateY(-180deg);
+  }
+  &:hover &__side--back {
+    //we hover on the parent but want to rotate card__side
+    transform: rotateY(0);
+  }
+
+  //frontside stayling
+  &__picture {
+    background-size: cover;
+    height: 23rem;
+    background-blend-mode: color; //watch for this cos it's very new and might not work in some browsers
+    webkit-clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 85%,
+      0 100%
+    ); //just in case in some browser is not suported
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    &--1 {
+      background-image: linear-gradient(
+          to right bottom,
+          $color-secundary-light,
+          $color-secundary-dark
+        ),
+        url(../img/nat-5.jpg);
+    }
+    &--2 {
+      background-image: url(../img/nat-5.jpg);
+    }
+    &--3 {
+      background-image: url(../img/nat-5.jpg);
+    }
+  }
+}
