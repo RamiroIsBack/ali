@@ -7,19 +7,54 @@
   padding: 6rem;
   padding-left: 9rem;
   font-size: $default-font-size;
+  transform: skewX(-12deg);
+
+  // & > * {
+  //   transform: skewX(12deg);  this wouldnt work because the transform in the shape would take preference and don't do this transform here, so we have to do it in the 2 child elements instead of using this all child selector
+  // }
 
   &__shape {
     width: 15rem;
     height: 15rem;
-    background-color: orangered;
     float: left;
     shape-outside: circle(
       50% at 50% 50%
     ); //this need to be floated and have a hight and width to work
     clip-path: circle(50% at 50% 50%);
-    transform: translateX(-3rem);
+    transform: translateX(-3rem) skewX(12deg);
+    position: relative;
+  }
+  &__img {
+    height: 100%;
+    transform: translateX(-4rem) scale(1.5); // the translate is just to center the img to where we want it
+    backface-visibility: hidden; //we need this to fix glitches with tranlating and transforming
+    transition: all 0.5s;
+  }
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 10%);
+    color: $color-white;
+    text-transform: uppercase;
+    opacity: 0;
+    font-size: 1.7rem;
+    text-align: center;
+    transition: all 0.5s;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden; //we need this to fix glitches with tranlating and transforming
   }
   &__text {
-    background-color: pink;
+    transform: skewX(12deg);
+  }
+
+  &:hover &__caption {
+    //al hacer hover en la story queremos aplicar cosas al story__caption
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
   }
 }
