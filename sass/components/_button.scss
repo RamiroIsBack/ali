@@ -1,4 +1,5 @@
 .btn {
+  &, //we set this so all this apply to btn aswell as the link and the sudo class visited
   &:link,
   btn:visited {
     text-transform: uppercase;
@@ -9,6 +10,10 @@
     transition: all 0.2s;
     position: relative;
     font-size: $default-font-size;
+
+    //change button element cos it comes with a border and not with the pointer
+    cursor: pointer;
+    border: none;
   }
   &:hover {
     transform: translateY(-0.3px);
@@ -19,7 +24,9 @@
       opacity: 0;
     }
   }
-  &:active {
+  &:active,
+  &:focus {
+    outline: none;
     transform: translateY(-0.1px);
     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
   }
